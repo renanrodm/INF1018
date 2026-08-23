@@ -12,8 +12,8 @@ void dump(void *p, int n){
 
 int main (void)
 {
-    char p = '$';
-    dump(&p, sizeof(p));
+    int i =1000;
+    dump(&i, sizeof(i));
     return 0;
 }
 
