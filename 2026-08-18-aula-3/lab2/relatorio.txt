@@ -1,4 +1,6 @@
 1A) Um int tem 4 bytes na memória. Para o valor i = 1000, eles estão organizados
 de forma que o valor menos significativo está no final, ou seja, little-endian. 
 
-1B) 
+1B) Um long int = 1000 ocupa 8 bytes, totalizando 32bits.
+
+1C) Um short int = 1000 ocupa 2 bytes, totalizando 16bits.

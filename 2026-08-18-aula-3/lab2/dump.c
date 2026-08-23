@@ -12,7 +12,7 @@ void dump(void *p, int n){
 
 int main (void)
 {
-    int i =1000;
+    short int i =26;
     dump(&i, sizeof(i));
     return 0;
 }
