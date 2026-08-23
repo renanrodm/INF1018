@@ -1,0 +1,4 @@
+1A) Um int tem 4 bytes na memória. Para o valor i = 1000, eles estão organizados
+de forma que o valor menos significativo está no final, ou seja, little-endian. 
+
+1B) 
