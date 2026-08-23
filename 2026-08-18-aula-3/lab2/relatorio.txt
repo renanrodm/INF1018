@@ -10,3 +10,9 @@ de forma que o valor menos significativo está no final, ou seja, little-endian.
 1E) A string  char p[] = "7509" ocupa 5 bytes na memória, onde cada byte tem o valor do hexadecimal
 correspondente ao inteiro da tabela ASCI de cada string. O ultimo byte, de valor 00 (hex) corresponde ao 
 fim da strin '\0', cujo valor em decimal na tabela ASCII é 0.
+
+2A) A função string2num transforma um numero em string no tipo int. A cada iteração, a expressão (*s - '0')
+transforma o conteúdo de caractere para int. E o valor de a define a casa decimal desse numero. Assim,
+montando o numero.
+
+
