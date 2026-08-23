@@ -12,7 +12,7 @@ void dump(void *p, int n){
 
 int main (void)
 {
-    short int i =26;
+    char i[] = "7509";
     dump(&i, sizeof(i));
     return 0;
 }

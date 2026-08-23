@@ -4,3 +4,9 @@ de forma que o valor menos significativo está no final, ou seja, little-endian.
 1B) Um long int = 1000 ocupa 8 bytes, totalizando 32bits.
 
 1C) Um short int = 1000 ocupa 2 bytes, totalizando 16bits.
+
+1D) O tipo char = 'a' resultad em 61 (hex), que é o equivalente a 97 (dec) e ocupa apenas 1 byte.
+
+1E) A string  char p[] = "7509" ocupa 5 bytes na memória, onde cada byte tem o valor do hexadecimal
+correspondente ao inteiro da tabela ASCI de cada string. O ultimo byte, de valor 00 (hex) corresponde ao 
+fim da strin '\0', cujo valor em decimal na tabela ASCII é 0.
