@@ -45,6 +45,11 @@ int main(void){
            0111 1110 -> a = 127!!!! positivo por conta do zero!!!
 
     */
+    
+    a = 127; // 0111 1111
+    printf("a = %hhd, b = %hhu\n", a , a);
+    a++; // 1000 0000
+    printf("a = %hhd, b = %hhu\n", a , a);
 
     return 0;
 }
