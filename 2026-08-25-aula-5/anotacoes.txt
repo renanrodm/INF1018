@@ -1,0 +1,5 @@
+1. O inverso de um numero é o valor em binário que zera a soma com ele mesmo.
+Ou seja, para o numero -25, primeiro obtemos a representação de 25 em bin, 
+depois invertemos todos os bits e somamos 1. O resultado disso é -25 em binário.
+
+2. Quem é o bit sinal? É o bit mais significativo. Em 8bits, é o bit 7.
