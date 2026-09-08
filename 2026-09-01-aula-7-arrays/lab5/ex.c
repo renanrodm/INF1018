@@ -136,7 +136,7 @@ int main(void){
   dump(&x5, sizeof(x5));
   printf("tamanho em bytes da estrutura x5: %ld\n", sizeof(x5));
   /*
-  Q3(3) --> Tamanho total de 3 bytes. Maior tipo char, que custa 1 byte.
+  Q3(e) --> Tamanho total de 3 bytes. Maior tipo char, que custa 1 byte.
   */
 
   printf("struct x6: \n");
