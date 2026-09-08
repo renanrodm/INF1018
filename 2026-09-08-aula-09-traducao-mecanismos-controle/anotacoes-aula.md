@@ -1,0 +1,1 @@
+Registrador RIP: aponta sempre para a PRÓXIMA instrução.
