@@ -21,6 +21,35 @@ struct X1 {
   char c2; // 1 byte
 } x1 = {'a', 0xa1a2a3a4, 'b'};
 
+struct X2 {
+  long l; // 8 bytes
+  char c; // 1 byte + 7 bytes (padding externo) = 16 bytes
+} x2;
+
+struct X3 {
+  int i; // 4 bytes
+  char c1; // 1 byte 
+  char c2; // 1 byte + 2 bytes (padding) = 8 bytes
+} x3;
+
+struct X4 {
+  struct X2 x; // 16 bytes
+  char c; // 1 byte + 7 bytes (padding) = 24 bytes.
+} x4;
+
+
+struct X5 {
+  char c1;
+  char c2;
+  char c3;
+} x5;
+
+struct X6 {
+  short s1; // 2 bytes + 2 bytes (padding para alinhar o int)
+  int i; // 4 bytes (maior tipo)
+  char c[3]; // 3 byte
+  short s2; // 2 bytes + 3 bytes (padding para alinhar tamanho final)
+} x6;
 
 union U1 {
   int i;
@@ -78,6 +107,45 @@ int main(void){
   dump(&u1, sizeof(u1));
   printf("tamanho em bytes da estrutura u1: %ld\n", sizeof(u1));
   
+  
+  printf("struct x2: \n");
+  dump(&x2, sizeof(x2));
+  printf("tamanho em bytes da estrutura x2: %ld\n", sizeof(x2));
+  /*
+  Q3(b) --> Tamanho 16 bytes. O maior elemento custa 8 bytes, logo, precisamos de um padding de + 7 bytes depois do char para alinhamento.
+  */
+
+
+  printf("struct x3: \n");
+  dump(&x3, sizeof(x3));
+  printf("tamanho em bytes da estrutura x3: %ld\n", sizeof(x3));
+  /*
+  Q3(c) --> Tamanho total = 8 bytes. O tamanho inicial da estrutura são 6 bytes, tendo int (4 bytes) como maior elemento. 
+  Dessa forma, o múltiplo mais próximo depois de 6 é 8, sendo necessário + 2 bytes de padding.
+  */
+
+  printf("struct x4: \n");
+  dump(&x4, sizeof(x4));
+  printf("tamanho em bytes da estrutura x4: %ld\n", sizeof(x4));
+  /*
+  Q3(d) --> Tamanho total de 24 bytes. Aqui quem dita o 'fator alinhamento' é o tipo individual do maior elemento, no caso, struct x2. O struct x2 tem como maior elemento individual o long ( 8 bytes), logo, o padding de 7 bytes coloca o próximo endereço no múltiplo de 8 maior que 17.
+  */
+
+  
+  printf("struct x5: \n");
+  dump(&x5, sizeof(x5));
+  printf("tamanho em bytes da estrutura x5: %ld\n", sizeof(x5));
+  /*
+  Q3(3) --> Tamanho total de 3 bytes. Maior tipo char, que custa 1 byte.
+  */
+
+  printf("struct x6: \n");
+  dump(&x6, sizeof(x6));
+  printf("tamanho em bytes da estrutura x6: %ld\n", sizeof(x6));
+  /*
+  Q3(f) --> Tamanho total de 16 bytes. Aqui temos o padding interno para alinhar o int depois do short e um padding ao final para que a estrutura tenha um tamanho múltiplo do seu maior tipo: int (4 bytes).
+  */
+
   /*
   Q3(g) --> No caso da união, temos 8 bytes. Por que haja um array de 5 posições, o maior tipo dentro dessa union é o int
   Dessa forma, como eles compartilham os mesmos endereços de memória E o array exige 1 byte a mais de tamanho que o int, o alinhamento pula para o próximo endereço múltiplo de 4.*/
