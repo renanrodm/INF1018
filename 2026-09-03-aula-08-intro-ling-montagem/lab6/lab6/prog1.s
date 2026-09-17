@@ -6,6 +6,14 @@ int main() {
     printf("%d\n", *p);
   return 0;
 }
+Dicionario
+Registrador   Var 
+ebx           i 
+r12           nums
+eax           p 
+ecx           sum
+
+
 */
 
 /*
@@ -38,26 +46,28 @@ main:
 /********************************************************/
 
   movl  $0, %ebx  /* ebx = 0; */
-  movq  $nums, %r12  /* r12 = &nums */
+  movl $0, %ecx /* ecx = 0 */
+  movq  $nums, %r12  /* r12 = &nums !!!8 bytes pq é o endereço de nums"*/
 
 L1:
   cmpl  $4, %ebx  /* if (ebx == 4) ? */
   je  L2          /* goto L2 */
 
   movl  (%r12), %eax    /* eax = *r12 */
+  addl  %eax, %ecx /*Acumula r12 ao eax*/
 
+  addl  $1, %ebx  /* ebx += 1; */
+  addq  $4, %r12  /* r12 += 4; */ 
+  jmp  L1         /* goto L1; */
+
+L2: 
 /*************************************************************/
 /* este trecho imprime o valor de %eax (estraga %eax)  */
   movq    $Sf, %rdi    /* primeiro parametro (ponteiro)*/
-  movl    %eax, %esi   /* segundo parametro  (inteiro) */
+  movl    %ecx, %esi   /* segundo parametro  (inteiro) */
   call  printf       /* chama a funcao da biblioteca */
 /*************************************************************/
 
-  addl  $1, %ebx  /* ebx += 1; */
-  addq  $4, %r12  /* r12 += 4; */
-  jmp  L1         /* goto L1; */
-
-L2:  
 /***************************************************************/
 /* mantenha este trecho aqui e nao mexa - finalizacao!!!!      */
   movq  $0, %rax  /* rax = 0  (valor de retorno) */
