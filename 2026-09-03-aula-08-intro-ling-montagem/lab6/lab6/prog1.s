@@ -26,26 +26,27 @@ main:
 /********************************************************/
 
   movl  $0, %ebx  /* ebx = 0; */
+  movl $0, %r10d /*Inicializa acumulador*/
   movq  $nums, %r12  /* r12 = &nums */
 
 L1:
   cmpl  $4, %ebx  /* if (ebx == 4) ? */
   je  L2          /* goto L2 */
 
-  movl  (%r12), %eax    /* eax = *r12 */
-
-/*************************************************************/
-/* este trecho imprime o valor de %eax (estraga %eax)  */
-  movq    $Sf, %rdi    /* primeiro parametro (ponteiro)*/
-  movl    %eax, %esi   /* segundo parametro  (inteiro) */
-  call  printf       /* chama a funcao da biblioteca */
-/*************************************************************/
+  addl  (%r12), %r10d    /* Acumulando aqui */
 
   addl  $1, %ebx  /* ebx += 1; */
   addq  $4, %r12  /* r12 += 4; */
   jmp  L1         /* goto L1; */
 
 L2:  
+/*************************************************************/
+/* este trecho imprime o valor de %eax (estraga %eax)  */
+  movq    $Sf, %rdi    /* primeiro parametro (ponteiro)*/
+  movl    %r10d, %esi   /* segundo parametro  (inteiro) */
+  call  printf       /* chama a funcao da biblioteca */
+/*************************************************************/
+
 /***************************************************************/
 /* mantenha este trecho aqui e nao mexa - finalizacao!!!!      */
   movq  $0, %rax  /* rax = 0  (valor de retorno) */
