@@ -1,3 +1,5 @@
+/* Renan Rodrigues Martins 2520186 3WB */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "gera_codigo.h"
@@ -23,18 +25,20 @@ void gera_codigo(FILE *f, unsigned char code[], funcp *entry)
         case 'e':
         { // end
             char c0;
-            if(fscanf(f, "nd%c", &c0) != 1){
+            if (fscanf(f, "nd%c", &c0) != 1)
             {
-                printf("Erro ao tentar ler: 'e'");
+                {
+                    printf("Erro ao tentar ler: 'e'");
+                }
+                break;
             }
-            break;
-        }
         case 'r':
         {
             char var0;
             int val0;
 
-            if(fscanf(f, "et %c", &var0) != 1){
+            if (fscanf(f, "et %c", &var0) != 1)
+            {
                 printf("Erro ao tentar ler: 'r'");
             }
 
@@ -67,7 +71,8 @@ void gera_codigo(FILE *f, unsigned char code[], funcp *entry)
         default:
             break;
         }
-    }
+        }
 
-    *entry = (funcp)code;
+        *entry = (funcp)code;
+    }
 }
