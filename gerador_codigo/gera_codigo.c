@@ -1,35 +1,61 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "gera_codigo.h"
 
-void gera_codigo(FILE *f, unsigned char code[], funcp *entry){
+void gera_codigo (FILE *f, unsigned char code[], funcp *entry) {
+  int i = 0;
+  int c;
 
-    //pushq %rbp
-    code[0] = 0x55;
+  while ((c = fgetc(f)) != EOF) {
+    switch (c) {
+      case 'f': { // function
+        char c0;
+        fscanf(f, "unction%c", &c0);
+        break;
+      }
+      case 'e': { // end
+        char c0;
+        fscanf(f, "nd%c", &c0);
+        break;
+      }
+      case 'r': {
+        char var0;
+        int val0;
 
-    //mov %rsp, %rbp
-    code[1] = 0x48;
-    code[2] = 0x89;
-    code[3] = 0xe5;
+        fscanf(f, "et %c", &var0);
 
-    //sub $32, %rsp
-    code[4] = 0x48;
-    code[5] = 0x83;
-    code[6] = 0xec;
-    code[7] = 0x20;
+        if (var0 == '$') {
+          fscanf(f, "%d", &val0);
 
-    //mov $100, %eax
-    code[8] = 0xb8;
-    code[9] = 0x64;
-    code[10] = 0x00;
-    code[11] = 0x00;
-    code[12] = 0x00;
+          
+          code[i++] = 0x55;                       // pushq %rbp
+          
+          code[i++] = 0x48;                       // movq %rsp, %rbp
+          code[i++] = 0x89; 
+          code[i++] = 0xe5;
+          
+          code[i++] = 0x48;                       // subq $32, %rsp
+          code[i++] = 0x83; 
+          code[i++] = 0xec; 
+          code[i++] = 0x20;
 
-    //leave 
-    code[13] = 0xc9;
+          
+          code[i++] = 0xb8;
+          *((int *)(&code[i])) = val0;            // inteiro de 4 bytes
+          i += 4;                                 
 
-    //ret
-    code[14] = 0xc3;
+          
+          code[i++] = 0xc9;                       // leave
+          code[i++] = 0xc3;                       // ret
+        }
+        break;
+      }
+      case '\n':
+        break;
+      default:
+        break;
+    }
+  }
 
-
-    *entry = (funcp) code;
+  *entry = (funcp) code;
 }
