@@ -1,0 +1,43 @@
+Renan Rodrigues Martins	2520186
+
+
+1. O que está funcionando:
+
+- Leitura e interpretação inicial do arquivo fonte LBS delimitado pelas marcas `function` e `end`.
+
+- Tradução dinâmica e direta para código de máquina x86-64 do comando de retorno incondicional de constantes (`ret $num`).
+
+- Geração correta do prólogo e do epílogo padrão da pilha (stack) para alocação do registro de ativação.
+
+
+2. O que NÃO está funcionando / Pendente:
+
+- Alocação e manipulação de variáveis locais (`v0` a `v4`) na pilha.
+
+- Leitura e uso do parâmetro de entrada (`p0`).
+
+- Implementação de operações aritméticas (`+`, `-`, `*`).
+
+- Instrução de retorno condicional (`zret`).
+
+- Instrução de chamada de funções (`call`).
+
+
+
+3. Exemplos de funções LBS utilizadas para teste:
+
+- Exemplo com sucesso:
+
+function
+
+ret $250
+
+end"
+
+
+function
+
+ret $100
+
+end
+
